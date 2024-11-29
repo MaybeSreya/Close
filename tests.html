@@ -1,59 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download Wallpaper</title>
+    <title>Image Downloader</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             margin: 0;
-            padding: 0;
             background-color: #f4f4f4;
         }
-        .container {
-            padding: 20px;
-        }
-        h1 {
-            color: #333;
-        }
+
         img {
-            max-width: 100%;
+            max-width: 80%;
             height: auto;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
-        .download-button {
-            display: inline-block;
-            margin-top: 20px;
+
+        #downloadBtn {
             padding: 10px 20px;
-            background-color: #28a745;
-            color: white;
-            text-decoration: none;
             font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
             border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             cursor: pointer;
+            transition: background-color 0.3s;
         }
-        .download-button:hover {
-            background-color: #218838;
+
+        #downloadBtn:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>Download this Wallpaper</h1>
-        <img id="wallpaper" src="https://source.unsplash.com/featured/1920x1080/?nature,water" alt="Beautiful Wallpaper">
-        <br>
-        <a id="downloadLink" href="https://source.unsplash.com/featured/1920x1080/?nature,water" download="wallpaper.jpg" class="download-button">Download Image</a>
-    </div>
+    <img src="https://i.ibb.co/TYkV0gK/youtube-background-7824168-1280.jpg" alt="Wallpaper" id="image">
+    <button id="downloadBtn">Download Image</button>
 
     <script>
-        // Dynamically set download link in case image source is updated
-        const image = document.getElementById('wallpaper');
-        const downloadLink = document.getElementById('downloadLink');
-        downloadLink.href = image.src;
+        document.getElementById('downloadBtn').addEventListener('click', function () {
+            const link = document.createElement('a');
+            link.href = 'https://i.ibb.co/TYkV0gK/youtube-background-7824168-1280.jpg';
+            link.download = 'youtube-background.jpg';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
     </script>
 </body>
+
 </html>
