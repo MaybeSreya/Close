@@ -1,0 +1,114 @@
+<html>
+<head>
+    <title>Ellipse : Receive</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+</head>
+<body class="bg-gray-100">
+    <div id="app"></div>
+    <script type="text/babel">
+        function App() {
+            const [selectedNetwork, setSelectedNetwork] = React.useState({
+                name: "BEP20 - BNB Smart Chain",
+                icon: "https://placehold.co/24x24",
+                address: "0xAd1059D2671112915f0c2BF17488182D996e7624",
+                qrCode: "https://placehold.co/100x100"
+            });
+            const [showDropdown, setShowDropdown] = React.useState(false);
+            const [showNotification, setShowNotification] = React.useState(false);
+
+            const networks = [
+                { name: "BEP20 - BNB Smart Chain", icon: "https://placehold.co/24x24", address: "0xAd1059D2671112915f0c2BF17488182D996e7624", qrCode: "https://placehold.co/100x100" },
+                { name: "SOL - Solana", icon: "https://placehold.co/24x24", address: "SolanaAddressExample1234567890", qrCode: "https://placehold.co/100x100" },
+                { name: "TON - The Open Network (Toncoin)", icon: "https://placehold.co/24x24", address: "ToncoinAddressExample1234567890", qrCode: "https://placehold.co/100x100" },
+                { name: "TRC20 - Tron(TRX)", icon: "https://placehold.co/24x24", address: "TronAddressExample1234567890", qrCode: "https://placehold.co/100x100" }
+            ];
+
+            const downloadQRCode = () => {
+                const link = document.createElement('a');
+                link.href = selectedNetwork.qrCode;
+                link.download = `${selectedNetwork.name.split(" - ")[0]}QR.png`;
+                link.click();
+            };
+
+            const copyToClipboard = (text) => {
+                navigator.clipboard.writeText(text).then(() => {
+                    setShowNotification(true);
+                    setTimeout(() => setShowNotification(false), 2000);
+                }, (err) => {
+                    console.error("Could not copy text: ", err);
+                });
+            };
+
+            return (
+                <div className="flex justify-center items-center h-screen">
+                    <div className="bg-white rounded-lg shadow-lg p-6 w-96 relative">
+                        <div className="flex justify-between items-center mb-4">
+                            <h1 className="text-xl font-bold">Receive crypto</h1>
+                            <i className="fas fa-times cursor-pointer"></i>
+                        </div>
+                        <div className="mb-4">
+                            <h2 className="text-gray-500">Assets</h2>
+                            <div className="flex items-center bg-gray-100 p-2 rounded-lg mt-2">
+                                <img src="https://placehold.co/24x24" alt="USDT logo" className="w-6 h-6 mr-2"/>
+                                <span className="font-semibold">USDT</span>
+                                <i className="fas fa-chevron-down ml-auto"></i>
+                            </div>
+                        </div>
+                        <div className="mb-4 relative">
+                            <h2 className="text-gray-500">Network</h2>
+                            <div className="flex items-center bg-gray-100 p-2 rounded-lg mt-2 cursor-pointer" onClick={() => setShowDropdown(!showDropdown)}>
+                                <img src={selectedNetwork.icon} alt="Network logo" className="w-6 h-6 mr-2"/>
+                                <span className="font-semibold">{selectedNetwork.name}</span>
+                                <i className="fas fa-chevron-down ml-auto"></i>
+                            </div>
+                            {showDropdown && (
+                                <div className="absolute bg-white border rounded-lg mt-2 w-full z-10">
+                                    {networks.map((network, index) => (
+                                        <div key={index} className="flex items-center p-2 hover:bg-gray-100 cursor-pointer" onClick={() => { setSelectedNetwork(network); setShowDropdown(false); }}>
+                                            <img src={network.icon} alt="Network logo" className="w-6 h-6 mr-2"/>
+                                            <span className="font-semibold">{network.name}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                        <div className="mb-4">
+                            <h2 className="text-gray-500">Recipients address USDT</h2>
+                            <div className="flex items-center bg-gray-100 p-2 rounded-lg mt-2">
+                                <img src={selectedNetwork.qrCode} alt="QR code" className="w-24 h-24 mr-2"/>
+                                <div className="flex-1">
+                                    <p className="text-sm">{selectedNetwork.name.split(" - ")[1]} address</p>
+                                    <p className="text-sm font-mono break-all">{selectedNetwork.address}</p>
+                                    <p className="text-sm text-gray-500">Minimum: 1 USDT (value of token)</p>
+                                </div>
+                                <i className="fas fa-copy ml-2 cursor-pointer" onClick={() => copyToClipboard(selectedNetwork.address)}></i>
+                            </div>
+                            <button onClick={downloadQRCode} className="bg-blue-100 text-blue-500 p-2 rounded-lg mt-2 w-full flex items-center justify-center">
+                                <i className="fas fa-download mr-2"></i> Download QR
+                            </button>
+                        </div>
+                        <div className="bg-yellow-100 p-4 rounded-lg mb-4">
+                            <h2 className="text-yellow-600 font-semibold">NOTES</h2>
+                            <p className="text-yellow-600 text-sm">Only send USDT to this address. Sending any other coins or tokens to this address may result in the loss of your funds that cannot be recovered.</p>
+                        </div>
+                        <button className="bg-blue-500 text-white p-2 rounded-lg w-full">Done</button>
+                        {showNotification && (
+                            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-500 text-white px-4 py-2 rounded-lg shadow-lg">
+                                Copied !
+                            </div>
+                        )}
+                    </div>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+</body>
+</html>
