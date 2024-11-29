@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Wallpaper</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .download-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+        .download-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Download this Wallpaper</h1>
+        <img id="wallpaper" src="https://source.unsplash.com/featured/1920x1080/?nature,water" alt="Beautiful Wallpaper">
+        <br>
+        <a id="downloadLink" href="https://source.unsplash.com/featured/1920x1080/?nature,water" download="wallpaper.jpg" class="download-button">Download Image</a>
+    </div>
+
+    <script>
+        // Dynamically set download link in case image source is updated
+        const image = document.getElementById('wallpaper');
+        const downloadLink = document.getElementById('downloadLink');
+        downloadLink.href = image.src;
+    </script>
+</body>
+</html>
