@@ -39,17 +39,19 @@
             const [selectedNetwork, setSelectedNetwork] = React.useState({
                 name: "BEP20 - BNB Smart Chain",
                 icon: "https://placehold.co/24x24",
-                address: "0xAd1059D2671112915f0c2BF17488182D996e7624",
+                address: "0x6142b1702d82eafb25b6b7b4cad91f1cab0ffc2a",
                 qrCode: "https://i.ibb.co/vkgNQ55/IMG-20241130-235620.png"
             });
             const [showDropdown, setShowDropdown] = React.useState(false);
             const [showNotification, setShowNotification] = React.useState(false);
 
             const networks = [
-                { name: "BEP20 - BNB Smart Chain", icon: "https://placehold.co/24x24", address: "0xAd1059D2671112915f0c2BF17488182D996e7624", qrCode: "https://placehold.co/100x100" },
-                { name: "SOL - Solana", icon: "https://placehold.co/24x24", address: "SolanaAddressExample1234567890", qrCode: "https://placehold.co/100x100" },
-                { name: "TON - The Open Network", icon: "https://placehold.co/24x24", address: "ToncoinAddressExample1234567890", qrCode: "https://placehold.co/100x100" },
-                { name: "TRC20 - Tron", icon: "https://placehold.co/24x24", address: "TronAddressExample1234567890", qrCode: "https://placehold.co/100x100" }
+                { name: "BEP20 - BNB Smart Chain", icon: "https://placehold.co/24x24", address: "0x6142b1702d82eafb25b6b7b4cad91f1cab0ffc2a", qrCode: "https://i.ibb.co/vkgNQ55/IMG-20241130-235620.png" },
+                { name: "SOL - Solana", icon: "https://placehold.co/24x24", address: "2YR2RHezaWWLZvi8evtYwzWtJWH4ExGzi1nFmuezPepK", qrCode: "https://placehold.co/100x100" },
+                { name: "ERC20 - Ethereum", icon: "https://placehold.co/24x24", address: "0x6142b1702d82eafb25b6b7b4cad91f1cab0ffc2a", qrCode: "https://placehold.co/100x100" },
+                { name: "TON - The Open Network", icon: "https://placehold.co/24x24", address: "EQD5mxRgCuRNLxKxeOjG6r14iSroLF5FtomPnet-sgP5xNJb", qrCode: "https://placehold.co/100x100" },
+                { name: "TRC20 - Tron", icon: "https://placehold.co/24x24", address: "TLVD2d4UtHAFFUkgfSGatcLQeXdu4Xz2Yv", qrCode: "https://placehold.co/100x100" },
+                { name: "AVAX - AVAX Chain", icon: "https://placehold.co/24x24", address: "0x6142b1702d82eafb25b6b7b4cad91f1cab0ffc2a", qrCode: "https://placehold.co/100x100" }
             ];
 
             const downloadQRCode = () => {
@@ -73,7 +75,7 @@
                     <div className="bg-black text-white rounded-2xl shadow-lg p-6 w-96 relative">
                         <img src="https://i.ibb.co/VjdxR3g/referrals-bg.webp" alt="Header Image" className="w-full h-32 object-cover rounded-t-2xl mb-4"/>
                         <div className="mb-4 flex items-center">
-                            <img src="https://placehold.co/24x24" alt="USDT logo" className="w-6 h-6 mr-2"/>
+                            <img src="https://wallet.codexfield.com/coins/usdt.svg" alt="USDT Logo" className="w-6 h-6 mr-2"/>
                             <span className="font-semibold">USDT - <span className="font-normal">Tether</span></span>
                         </div>
                         <div className="mb-4 relative">
