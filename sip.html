@@ -1,0 +1,130 @@
+<html lang="en">
+<head>
+    <title>CRYPTO</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+        
+        body {
+            font-family: 'Titillium Web', sans-serif;
+        }
+
+        .qlementine-icons--copy-16 {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23000' fill-rule='evenodd' d='M7.5 3A2.5 2.5 0 0 0 5 5.5v8A2.5 2.5 0 0 0 7.5 16h6a2.5 2.5 0 0 0 2.5-2.5v-8A2.5 2.5 0 0 0 13.5 3zM6 5.5A1.5 1.5 0 0 1 7.5 4h6A1.5 1.5 0 0 1 15 5.5v8a1.5 1.5 0 0 1-1.5 1.5h-6A1.5 1.5 0 0 1 6 13.5z' clip-rule='evenodd'/%3E%3Cpath fill='%23000' d='M8 6.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m0 3a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m0 3a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-8-10A2.5 2.5 0 0 1 2.5 0h6c.979 0 1.83.562 2.24 1.38c.152.303-.104.618-.443.618c-.227 0-.422-.149-.549-.338a1.5 1.5 0 0 0-1.24-.662h-6a1.5 1.5 0 0 0-1.5 1.5v8a1.5 1.5 0 0 0 1.5 1.5h1a.5.5 0 0 1 0 1h-1a2.5 2.5 0 0 1-2.5-2.5v-8z'/%3E%3C/svg%3E");
+            background-color: currentColor;
+            -webkit-mask-image: var(--svg);
+            mask-image: var(--svg);
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            -webkit-mask-size: 100% 100%;
+            mask-size: 100% 100%;
+            position: relative;
+            top: -6px; /* Adjust this value to move the icon up or down */
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div id="app"></div>
+    <script type="text/babel">
+        function App() {
+            const [selectedNetwork, setSelectedNetwork] = React.useState({
+                name: "BEP20 - BNB Smart Chain",
+                icon: "https://placehold.co/24x24",
+                address: "0xAd1059D2671112915f0c2BF17488182D996e7624",
+                qrCode: "https://placehold.co/100x100"
+            });
+            const [showDropdown, setShowDropdown] = React.useState(false);
+            const [showNotification, setShowNotification] = React.useState(false);
+
+            const networks = [
+                { name: "BEP20 - BNB Smart Chain", icon: "https://placehold.co/24x24", address: "0xAd1059D2671112915f0c2BF17488182D996e7624", qrCode: "https://placehold.co/100x100" },
+                { name: "SOL - Solana", icon: "https://placehold.co/24x24", address: "SolanaAddressExample1234567890", qrCode: "https://placehold.co/100x100" },
+                { name: "TON - The Open Network (Toncoin)", icon: "https://placehold.co/24x24", address: "ToncoinAddressExample1234567890", qrCode: "https://placehold.co/100x100" },
+                { name: "TRC20 - Tron(TRX)", icon: "https://placehold.co/24x24", address: "TronAddressExample1234567890", qrCode: "https://placehold.co/100x100" }
+            ];
+
+            const downloadQRCode = () => {
+                const link = document.createElement('a');
+                link.href = selectedNetwork.qrCode;
+                link.download = `${selectedNetwork.name.split(" - ")[0]}QR.png`;
+                link.click();
+            };
+
+            const copyToClipboard = (text) => {
+                navigator.clipboard.writeText(text).then(() => {
+                    setShowNotification(true);
+                    setTimeout(() => setShowNotification(false), 2000);
+                }, (err) => {
+                    console.error("Could not copy text: ", err);
+                });
+            };
+
+            return (
+                <div className="flex justify-center items-center h-screen">
+                    <div className="bg-black text-white rounded-2xl shadow-lg p-6 w-96 relative">
+                        <img src="https://i.ibb.co/VjdxR3g/referrals-bg.webp" alt="Header Image" className="w-full h-32 object-cover rounded-t-2xl mb-4"/>
+                        <div className="mb-4 flex items-center">
+                            <img src="https://placehold.co/24x24" alt="USDT logo" className="w-6 h-6 mr-2"/>
+                            <span className="font-semibold">USDT - <span className="font-normal">Tether</span></span>
+                        </div>
+                        <div className="mb-4 relative">
+                            <h2 className="text-gray-400">Network</h2>
+                            <div className="flex items-center bg-gray-700 bg-opacity-50 p-2 rounded-lg mt-2 cursor-pointer" onClick={() => setShowDropdown(!showDropdown)}>
+                                <img src={selectedNetwork.icon} alt="Network logo" className="w-6 h-6 mr-2"/>
+                                <span className="font-semibold">{selectedNetwork.name}</span>
+                                <i className="fas fa-chevron-down ml-auto"></i>
+                            </div>
+                            {showDropdown && (
+                                <div className="absolute bg-gray-900 border rounded-lg mt-2 w-full z-10">
+                                    {networks.map((network, index) => (
+                                        <div key={index} className="flex items-center p-2 hover:bg-gray-800 cursor-pointer" onClick={() => { setSelectedNetwork(network); setShowDropdown(false); }}>
+                                            <img src={network.icon} alt="Network logo" className="w-6 h-6 mr-2"/>
+                                            <span className="font-semibold">{network.name.split(" - ")[0]}</span> - <span className="font-normal">{network.name.split(" - ")[1]}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                        <div className="mb-4">
+                            <h2 className="text-gray-400">Recipients address USDT</h2>
+                            <div className="flex items-center bg-gray-700 bg-opacity-50 p-2 rounded-lg mt-2">
+                                <img src={selectedNetwork.qrCode} alt="QR code" className="w-24 h-24 mr-2"/>
+                                <div className="flex-1">
+                                    <p className="text-sm font-semibold">{selectedNetwork.name.split(" - ")[1]} address</p>
+                                    <p className="text-sm font-mono break-all">{selectedNetwork.address}</p>
+                                    <p className="text-sm text-gray-400">Minimum: 1 USDT (value of token)</p>
+                                </div>
+                                <div className="qlementine-icons--copy-16 ml-2 cursor-pointer" onClick={() => copyToClipboard(selectedNetwork.address)}></div>
+                            </div>
+                            <button onClick={downloadQRCode} className="bg-blue-100 text-blue-500 p-2 rounded-lg mt-2 w-full flex items-center justify-center">
+                                <i className="fas fa-download mr-2"></i> Download QR
+                            </button>
+                        </div>
+                        <div className="bg-yellow-100 p-4 rounded-lg mb-4">
+                            <h2 className="text-yellow-600 font-semibold">NOTES</h2>
+                            <p className="text-yellow-600 text-sm">Only send USDT to this address. Sending any other coins or tokens to this address may result in the loss of your funds that cannot be recovered.</p>
+                        </div>
+                        <button className="bg-blue-500 text-white p-2 rounded-lg w-full">Done</button>
+                        {showNotification && (
+                            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg">
+                                Copied!
+                            </div>
+                        )}
+                    </div>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+</body>
+</html>
