@@ -9,10 +9,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
         
         body {
-            font-family: 'Titillium Web', sans-serif;
+            font-family: 'Outfit', sans-serif;
         }
 
         .qlementine-icons--copy-16 {
@@ -28,7 +28,7 @@
             -webkit-mask-size: 100% 100%;
             mask-size: 100% 100%;
             position: relative;
-            top: -6px; /* Adjust this value to move the icon up or down */
+            top: -1px; /* Adjust this value to move the icon up or down */
         }
     </style>
 </head>
@@ -48,8 +48,8 @@
             const networks = [
                 { name: "BEP20 - BNB Smart Chain", icon: "https://placehold.co/24x24", address: "0xAd1059D2671112915f0c2BF17488182D996e7624", qrCode: "https://placehold.co/100x100" },
                 { name: "SOL - Solana", icon: "https://placehold.co/24x24", address: "SolanaAddressExample1234567890", qrCode: "https://placehold.co/100x100" },
-                { name: "TON - The Open Network (Toncoin)", icon: "https://placehold.co/24x24", address: "ToncoinAddressExample1234567890", qrCode: "https://placehold.co/100x100" },
-                { name: "TRC20 - Tron(TRX)", icon: "https://placehold.co/24x24", address: "TronAddressExample1234567890", qrCode: "https://placehold.co/100x100" }
+                { name: "TON - The Open Network", icon: "https://placehold.co/24x24", address: "ToncoinAddressExample1234567890", qrCode: "https://placehold.co/100x100" },
+                { name: "TRC20 - Tron", icon: "https://placehold.co/24x24", address: "TronAddressExample1234567890", qrCode: "https://placehold.co/100x100" }
             ];
 
             const downloadQRCode = () => {
@@ -64,7 +64,7 @@
                     setShowNotification(true);
                     setTimeout(() => setShowNotification(false), 2000);
                 }, (err) => {
-                    console.error("Could not copy text: ", err);
+                    console.error("COULD NOT copy: ", err);
                 });
             };
 
@@ -110,13 +110,13 @@
                             </button>
                         </div>
                         <div className="bg-yellow-100 p-4 rounded-lg mb-4">
-                            <h2 className="text-yellow-600 font-semibold">NOTES</h2>
+                            <h2 className="text-yellow-600 font-semibold">NOTE IT</h2>
                             <p className="text-yellow-600 text-sm">Only send USDT to this address. Sending any other coins or tokens to this address may result in the loss of your funds that cannot be recovered.</p>
                         </div>
                         <button className="bg-blue-500 text-white p-2 rounded-lg w-full">Done</button>
                         {showNotification && (
-                            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg">
-                                Copied!
+                            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-500 text-white px-4 py-2 rounded-lg shadow-lg">
+                                Copied !
                             </div>
                         )}
                     </div>
