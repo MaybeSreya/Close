@@ -1,0 +1,85 @@
+<html lang="en">
+<head>
+    <title>N O T I F I C A T I O N</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+</head>
+<body class="bg-gray-200">
+    <div id="root"></div>
+    <script type="text/babel">
+        const App = () => {
+            const otp = "058197";
+            const [showToast, setShowToast] = React.useState(false);
+            const [currentDateTime, setCurrentDateTime] = React.useState(new Date());
+
+            React.useEffect(() => {
+                const timer = setInterval(() => {
+                    setCurrentDateTime(new Date());
+                }, 1000);
+
+                return () => clearInterval(timer);
+            }, []);
+
+            const handleLinkClick = (e) => {
+                e.preventDefault();
+                window.open("https://telegram.me/UnnaKun?text=i%20need%20help", "_blank");
+            };
+
+            const handleCopyClick = () => {
+                navigator.clipboard.writeText(otp).then(() => {
+                    setShowToast(true);
+                    setTimeout(() => setShowToast(false), 3000);
+                }, () => {
+                    alert("Failed to copy OTP.");
+                });
+            };
+
+            const getCurrentDateTimeString = () => {
+                const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+                return currentDateTime.toLocaleDateString('en-US', options);
+            };
+
+            return (
+                <div className="relative max-w-md mx-auto mt-10 bg-white rounded-lg shadow-md">
+                    <div className="bg-gray-100 p-4 rounded-t-lg flex justify-between items-center">
+                        <span className="text-gray-600">{getCurrentDateTimeString()}</span>
+                        <i className="fas fa-clock text-gray-600"></i>
+                    </div>
+                    <div className="p-4">
+                        <div className="flex items-center mb-2">
+                            <i className="fas fa-envelope text-blue-500 mr-2"></i>
+                            <span className="text-gray-600">Messages • 15m</span>
+                        </div>
+                        <div className="flex items-center mb-4">
+                            <div className="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0"></div>
+                            <div className="ml-2">
+                                <div className="bg-black h-4 w-24 mb-1"></div>
+                                <div className="bg-black h-4 w-16"></div>
+                            </div>
+                        </div>
+                        <p className="text-gray-700 mb-2">Your one-time passcode: <span className="font-bold">{otp}</span></p>
+                        <p className="text-gray-700 mb-4">Please enter this passcode to complete your Online Banking Sign On. Need help? Contact <a href="https://telegram.me/UnnaKun?text=i%20need%20help" className="text-blue-600" onClick={handleLinkClick}>@UnnaKun</a>.</p>
+                        <div className="flex justify-between border-t pt-2">
+                            <button className="text-blue-600 font-bold" onClick={handleCopyClick}>COPY OTP</button>
+                            <button className="text-blue-600 font-bold">MARK AS READ</button>
+                        </div>
+                    </div>
+                    {showToast && (
+                        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-500 text-white px-4 py-2 rounded shadow-lg flex items-center">
+                            <i className="fas fa-check mr-2"></i>
+                            OTP Copied!
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
