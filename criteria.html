@@ -1,0 +1,72 @@
+<html>
+<head>
+    <title>Rank Contribution</title>
+    <script src="https://unpkg.com/react/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap');
+        body {
+            font-family: 'Signika Negative', sans-serif;
+        }
+        .kalam-font {
+            font-family: 'Kalam', cursive;
+        }
+    </style>
+</head>
+<body class="bg-green-700 flex items-center justify-center min-h-screen">
+    <div id="app" class="text-white text-center p-4"></div>
+    <script type="text/babel">
+        function App() {
+            return (
+                <div className="max-w-md mx-auto bg-green-800 p-6 rounded-lg">
+                    <div className="bg-green-700 p-4 rounded-lg">
+                        <div className="flex items-center justify-center mb-4">
+                            <img src="https://placehold.co/24x24" alt="Crown icon" className="mr-2" />
+                            <span className="text-lg kalam-font">What rank are you?</span>
+                        </div>
+                        <h1 className="text-3xl font-bold mb-4 kalam-font">More Contribution. More $GOATS.</h1>
+                        <p className="text-lg mb-8">
+                            GOATS Airdrop criteria are purely based on level of contribution of all users to bring fair & square game. All GOATS will be converted to $GOATS at a base ratio, and users in higher ranks will receive a bonus. The higher the rank, the bigger the bonus.
+                        </p>
+                        <div className="flex justify-around items-end mb-8">
+                            <div className="flex flex-col items-center">
+                                <span className="mb-2">45%</span>
+                                <div className="bg-yellow-500 w-10 h-32 mb-2 rounded-t-lg"></div>
+                                <span>Rank 1</span>
+                            </div>
+                            <div className="flex flex-col items-center">
+                                <span className="mb-2">25%</span>
+                                <div className="bg-yellow-500 w-10 h-24 mb-2 rounded-t-lg"></div>
+                                <span>Rank 2</span>
+                            </div>
+                            <div className="flex flex-col items-center">
+                                <span className="mb-2">15%</span>
+                                <div className="bg-yellow-500 w-10 h-20 mb-2 rounded-t-lg"></div>
+                                <span>Rank 3</span>
+                            </div>
+                            <div className="flex flex-col items-center">
+                                <span className="mb-2">10%</span>
+                                <div className="bg-yellow-500 w-10 h-16 mb-2 rounded-t-lg"></div>
+                                <span>Rank 4</span>
+                            </div>
+                            <div className="flex flex-col items-center">
+                                <span className="mb-2">5%</span>
+                                <div className="bg-yellow-500 w-10 h-8 mb-2 rounded-t-lg"></div>
+                                <span>Rank 5</span>
+                            </div>
+                        </div>
+                        <div className="flex justify-center">
+                            <button className="bg-blue-300 text-black font-bold py-2 px-4 rounded-md">Check Airdrop Allocation</button>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+</body>
+</html>
